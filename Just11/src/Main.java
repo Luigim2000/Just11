@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 public class Main {
 	
 	public static void main(String[] args) {
-		JFrame f=new JFrame("ST");
+		JFrame f=new JFrame("Just11");
 		f.setLayout(new BorderLayout());
 		f.setSize(600,600);
 		GamePanel p=new GamePanel();
