@@ -15,15 +15,17 @@ public class GamePanel extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 15527400473185110L;
 	private Cell[][] grid;
 	private int cellSize,size;
+	private int maxCur;
 	
 	public GamePanel() {
 		size=5;
 		grid=new Cell[size][size];
 		cellSize=115;
+		maxCur=3;
 		Random r=new Random();
 		for(int i = 0; i < grid.length; i++) {
 			for(int j = 0; j < grid[i].length; j++) {
-				grid[i][j] = new Cell(r.nextInt(3));
+				grid[i][j] = new Cell(r.nextInt(maxCur)+1);
 			}
 		}
 		addMouseListener(this);
@@ -48,6 +50,10 @@ public class GamePanel extends JPanel implements MouseListener{
 		if(!hasNeighbour(x,y,grid[x][y].getType()))
 			return;
 		grid[x][y].nextType();
+		if(grid[x][y].getType()>maxCur) {
+			System.out.println(maxCur);
+			maxCur++;
+		}
 		
 		updateNeighbourhood(grid[x][y].getType()-1,x,y);
 		updateFall();
@@ -125,7 +131,7 @@ public class GamePanel extends JPanel implements MouseListener{
 		for(int i=0;i<size;i++)
 			for(int j=0;j<size;j++) 
 				if(grid[i][j].getType()==-1) {
-					grid[i][j].setType(r.nextInt(3));
+					grid[i][j].setType(r.nextInt(maxCur)+1);
 				}
 	}
 	
